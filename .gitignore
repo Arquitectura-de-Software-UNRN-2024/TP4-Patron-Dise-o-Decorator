@@ -1,0 +1,6 @@
+compile_flags.txt
+bin/
+obj/
+.vscode/
+.jukit/
+**/.jukit
