@@ -42,18 +42,6 @@ void item::disp_selected() {
     std::cout << "\033[31;1;4m--> " << name << "\033[0m     \n";
 }
 
-std::string itemCombo::desc() {
-    return combo->getDescripcion();
-}
-
-float itemCombo::price() {
-    return combo->getValor();
-}
-
-bool itemCombo::itsaproduct() {
-    return combo != nullptr;
-}
-
 std::unique_ptr<Combo> itemCombo::getCombo() {
     return move(combo);
 }
@@ -67,16 +55,17 @@ void item::setY(int y) {
 }
 
 void itemCombo::print_description() {
-    if (itsaproduct()) {
-        std::cout << "Descripción del combo:\n\t" << desc();
-        std::cout << "\nPrecio del combo: $" << price();
-    } else {
-        std::cout << "Presione [ENTER] para salir del programa\n";
-    }
+    std::cout << "Descripción del combo:\n\t" << combo->getDescripcion();
+    std::cout << "\nPrecio del combo: $" << combo->getValor();
+}
+
+void itemSalir::print_description() {
+    std::cout << desc << "\n";
 }
 
 void itemDecorator::print_description() {
-    std::cout << "Hola soy un decorator \n";
+    std::cout << "Agregue: " << aditional->getName();
+    std::cout << "\nPor solo: $" << aditional->getValorAgregado();
 }
 
 std::unique_ptr<Combo> itemDecorator::getCombo() {

@@ -11,6 +11,7 @@
  */
 
 #pragma once
+#include "aditional_decorator.hpp"
 #include "combo.hpp"
 #include "func.hpp"
 #include <cstdio>
@@ -48,6 +49,19 @@ class itemHead : public item {
     };
 };
 
+class itemSalir : public item {
+  public:
+    itemSalir(std::string s, std::string d) : item(s), desc(d) {
+    }
+    virtual void print_description() override;
+    virtual std::unique_ptr<Combo> getCombo() override {
+        return nullptr;
+    };
+
+  private:
+    std::string desc;
+};
+
 class itemCombo : public item {
   public:
     itemCombo(std::string s1, Combo *combo) : item(s1), combo(combo) {
@@ -57,17 +71,18 @@ class itemCombo : public item {
 
   private:
     std::unique_ptr<Combo> combo;
-    std::string desc();
-    float price();
-    bool itsaproduct();
 };
 
 class itemDecorator : public item {
   public:
-    itemDecorator(std::string s1) : item(s1) {
+    itemDecorator(std::string s1, std::unique_ptr<AditionalDecorator> ad)
+        : item(s1), aditional(std::move(ad)) {
     }
     virtual void print_description() override;
     virtual std::unique_ptr<Combo> getCombo() override;
+
+  private:
+    std::unique_ptr<AditionalDecorator> aditional;
 };
 
 class menu {

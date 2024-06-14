@@ -30,7 +30,8 @@ std::unique_ptr<Combo> mostrarMenuCombos() {
         new itemCombo("Combo Familiar", new ComboFamiliar())));
     obj.add(std::unique_ptr<item>(
         new itemCombo("Combo Especial", new ComboEspecial())));
-    obj.add(std::unique_ptr<item>(new itemCombo("Salir", nullptr)));
+    obj.add(std::unique_ptr<item>(
+        new itemSalir("Salir", "Presione [ENTER] para salir del programa")));
     return obj.display();
 }
 
@@ -38,8 +39,21 @@ std::unique_ptr<Combo>
 mostrarMenuAdicionales(std::unique_ptr<Combo> combo_elegido) {
     menu obj;
     obj.menu_head("¿Deseea agregar adicionales?");
-    obj.add(std::unique_ptr<item>(new itemDecorator("Tomate")));
-    obj.add(std::unique_ptr<item>(new itemDecorator("Ninguno")));
+    obj.add(std::unique_ptr<item>(
+        new itemDecorator("Tomate", std::unique_ptr<AditionalDecorator>(
+                                        new TomateDecorator(*combo_elegido)))));
+    obj.add(std::unique_ptr<item>(new itemDecorator(
+        "Papas", std::unique_ptr<AditionalDecorator>(
+                     new PapasFritasDecorator(*combo_elegido)))));
+    obj.add(std::unique_ptr<item>(
+        new itemDecorator("Carne", std::unique_ptr<AditionalDecorator>(
+                                       new CarneDecorator(*combo_elegido)))));
+    obj.add(std::unique_ptr<item>(
+        new itemDecorator("Queso", std::unique_ptr<AditionalDecorator>(
+                                       new QuesoDecorator(*combo_elegido)))));
+    obj.add(std::unique_ptr<item>(
+        new itemSalir("Ninguno", "Presione [ENTER] para salir del programa")));
+
     return obj.display();
 }
 
