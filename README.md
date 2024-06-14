@@ -21,16 +21,12 @@
 
 <summary><b>Objetivo de proyecto</b></summary>
 
-* Diseñar e implementar un programa que tenga un interfaz pila (StackInterface) y dos implementaciones:
-  * una con memoria estática (FixedArrayStack) 
-  * otra con memoria dinámica (DynamicMemStack)
-   
-* Escribir una clase Vehiculo que sea apilable.
-* Escribir una clase StackUser que use la pila:
-  * método para cargar la pila
-  * método para consumir los elementos e imprimir sus datos
+* Diseñar e implementar un programa con el patrón de diseño estructural Decorator:
+  * Un restaurante de comidas rápidas ofrece 3 combos (Básio, Familiar y Especial). Cada uno tiene características diferentes (cantidad, porciones y salsas). Pero se puede aumentar el pedido mediante adicionales (Tomate, Papas Fritas, Carne, Queso).
+  * Crear un sistema de pedido que permita seleccionar el ombo y adicionales. El sistema deberá informar el pedido del usuario y valor total.
     
-![Consigna](/consigna/imagenconsigna.png)
+![ConsignaUML](/consigna/UML_Consigna.png)
+
  </details>
  
 <details>
@@ -39,31 +35,20 @@
 
 * Haga:
  ```{bash}
-git clone https://github.com/Arquitectura-de-Software-UNRN-2024/TP2-Uso-de-interfaces.git
+git clone https://github.com/Arquitectura-de-Software-UNRN-2024/TP4-Patron-Disenno-Decorator.git
 make
 ```
 * Los ejecutables luego de hacer make, se encontrarán en bin/.
-* para correr el Stackable main:
+* para correr el Sistema de Gestión de Pedidos main:
  ```{bash}
-#Para correr el stackable main con los vehiculos
-bin/main <opciones>
+#Para correr el sistema de gestión de pedidos
+bin/main
 # en donde las opciones son:
-#
-# --help | -h : para mostrar ayuda.
-#
-# -f : selecciona la implementación de pila estática.
-#  La pila se crea con un tamaño predeterminado definido por la variable
-#  `FIXED_ARRAY_STACK_CAPACITY` en el archivo ´fixed_array_stack.hpp`.
-#
-# -d [tamaño] : selecciona la implementación de pila de memoria dinámica.
-#  Si no se proporciona un tamaño, se crea una pila predeterminada con un tamaño
-#  especificado por la constante `DYNAMIC_STACK_INITIAL_CAPACITY` en el archivo `dynamic_mem_stack.hpp`.
-#  Si se proporciona un tamaño (por ejemplo, `-d 100`), la pila se inicializa con la capacidad inicial especificada.
-#
-# -r [tamaño] : selecciona la implementación de pila de memoria dinámica redimensionable.
-#  Si no se proporciona un tamaño, se crea una pila predeterminada con un tamaño especificado
-#  por la constante `DYNAMIC_STACK_INITIAL_CAPACITY` en el archivo `dynamic_mem_stack.hpp`.
-#  Si se proporciona un tamaño (por ejemplo, `-r 100`), la pila se inicializa con la capacidad inicial especificada.
+# Se mostrará un menú inicial con las opciones de los 3 combos y una opción [SALIR] del menú.
+# Para seleccionar alguna opción deberá presionar la tecla [ENTER].
+# Si presiona algún combo, se mostrará el submenú para agregar adicionales.
+# Usted podrá agregar todos los adicionales que quiera con tan solo presionar [ENTER] en el adicional.
+# Para terminar el pedido y ver la descripción y valor total deberá presionar la opción [No deseo agregar más adicionales].
 ```
 
 </details>
@@ -72,42 +57,24 @@ bin/main <opciones>
   
 <summary><b>Pruebas de programa funcionando</b></summary>
 
-### Menú de ayuda
+### Menú Bienvenido al sistema de pedidos
   <div>
   <p style = 'text-align:center;'>
-  <img src=/consigna/menuhelp.png alt="Menú de Ayuda" width="500px">
-  </p>
-  </div>
-  
-### Código main
- <div>
-  <p style = 'text-align:center;'>
-  <img src=/consigna/maincpp.png alt="Código main" width="500px">
+  <img src=/consigna/menu_bienvenido.png alt="Menú de Bienvenida y selección de combo" width="500px">
   </p>
   </div>
 
-### Flag -f  
-#### Fixed Array Stack con el 'define' por default y 'define' autodefinido por usuario
- <div>
+### SubMenú Adicionales
+  <div>
   <p style = 'text-align:center;'>
-  <img src=/consigna/flag-fcondistintasdefiniciones.png alt="Flag-f" width="500px">
+  <img src=/consigna/menu_adicionales.png alt="Menú de selección de adicionales" width="500px">
   </p>
   </div>
 
-### Flag -d  
-#### Dinamic Array Stack con el 'define' por default y con [tamaño] definido por usuario por teclado
- <div>
+### Fin de programa
+  <div>
   <p style = 'text-align:center;'>
-  <img src=/consigna/flag-dcondistintasdef.png alt="Flag-d" width="500px">
-  </p>
-  </div>
-
-
-### Flag -r  
-#### Dinamic Array Stack Rezizable con el 'define' por default y con [tamaño] definido por usuario por teclado
- <div>
-  <p style = 'text-align:center;'>
-  <img src=/consigna/flag-rcondistintasdefiniciones.png alt="Flag-r" width="500px">
+  <img src=/consigna/salida_del_programa.png alt="Salida del programa" width="500px">
   </p>
   </div>
 
