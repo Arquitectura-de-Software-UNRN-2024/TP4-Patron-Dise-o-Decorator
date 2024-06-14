@@ -11,47 +11,79 @@
  */
 
 #pragma once
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cstdio>
-#include <memory>
-#include "func.hpp"
 #include "combo.hpp"
+#include "func.hpp"
+#include <cstdio>
+#include <fstream>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 
-using namespace std;
+class item {
+  public:
+    item(std::string s1) : name(s1) {
+    }
+    std::string getName();
+    void setName(std::string name);
+    void display();
+    void disp_selected();
+    int getY();
+    void setY(int y);
+    virtual void print_description() = 0;
+    virtual std::unique_ptr<Combo> getCombo() = 0;
 
-class item{
-    string name;
-    unique_ptr<Combo> combo;
+  private:
+    std::string name;
     int y;
-
-    public:
-        item(string s1, Combo * combo):name(s1), combo(combo){}
-        string getName();
-        void setName(string name);
-        void display();
-        void disp_selected();
-        string desc();
-        float price();
-        bool itsaproduct();
-        unique_ptr<Combo> getCombo();
-        int getY();
-        void setY(int y);
 };
 
-class menu{
-    item head = {"",nullptr};
-    vector<item> entries = {};
-    int selected = 0;
-    public:
-    void add(string s, Combo * combo);
-    void menu_head(string);
+class itemHead : public item {
+  public:
+    itemHead(std::string s) : item(s) {
+    }
+    virtual void print_description() override {};
+    virtual std::unique_ptr<Combo> getCombo() override {
+        return nullptr;
+    };
+};
+
+class itemCombo : public item {
+  public:
+    itemCombo(std::string s1, Combo *combo) : item(s1), combo(combo) {
+    }
+    virtual void print_description() override;
+    virtual std::unique_ptr<Combo> getCombo() override;
+
+  private:
+    std::unique_ptr<Combo> combo;
+    std::string desc();
+    float price();
+    bool itsaproduct();
+};
+
+class itemDecorator : public item {
+  public:
+    itemDecorator(std::string s1) : item(s1) {
+    }
+    virtual void print_description() override;
+    virtual std::unique_ptr<Combo> getCombo() override;
+};
+
+class menu {
+  public:
+    void add(std::unique_ptr<item> it);
+    void menu_head(std::string);
     std::unique_ptr<Combo> display();
     void preparaDisplay();
     void dibujarEspaciador();
     void dibujarMenu();
+    void describirItem();
     bool navegarMenu();
-};
+    std::unique_ptr<Combo> makeSelection();
 
+  private:
+    itemHead head = {""};
+    std::vector<std::unique_ptr<item>> entries = {};
+    int selected = 0;
+};
