@@ -32,8 +32,12 @@ std::unique_ptr<Combo> mostrarMenuCombos() {
 	return obj.display();
 }
 
-void mostrarMenuAdicionales(std::unique_ptr<Combo> combo_elegido){
-	
+std::unique_ptr<Combo> mostrarMenuAdicionales(std::unique_ptr<Combo> combo_elegido){
+	menu obj;
+    obj.menu_head("¿Deseea agregar adicionales?");
+    obj.add("Tomate", nullptr);
+    obj.add("Ninguno", nullptr);
+	return obj.display();
 }
 
 int main() {
