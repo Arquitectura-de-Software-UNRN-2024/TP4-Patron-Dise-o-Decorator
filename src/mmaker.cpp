@@ -43,7 +43,7 @@ void item::disp_selected() {
 }
 
 std::unique_ptr<Combo> itemCombo::getCombo() {
-    return move(combo);
+    return std::move(combo);
 }
 
 int item::getY() {
@@ -69,7 +69,7 @@ void itemDecorator::print_description() {
 }
 
 std::unique_ptr<Combo> itemDecorator::getCombo() {
-    return nullptr;
+    return std::move(aditional);
 }
 
 void menu::add(std::unique_ptr<item> it) {
