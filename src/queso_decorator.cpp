@@ -15,10 +15,14 @@
 QuesoDecorator::QuesoDecorator(Combo &decorado) : AditionalDecorator(decorado) {
 }
 
-std::string QuesoDecorator::getDescripcion() {
-    return AditionalDecorator::getDescripcion() + " + queso";
+const std::string QuesoDecorator::name = "queso";
+
+std::string QuesoDecorator::getName() {
+    return QuesoDecorator::name;
 }
 
-float QuesoDecorator::getValor() {
-    return AditionalDecorator::getValor() + 0.80;
+const float QuesoDecorator::value = 0.8;
+
+float QuesoDecorator::getValorAgregado() {
+    return QuesoDecorator::value;
 }

@@ -15,10 +15,14 @@
 CarneDecorator::CarneDecorator(Combo &decorado) : AditionalDecorator(decorado) {
 }
 
-std::string CarneDecorator::getDescripcion() {
-    return AditionalDecorator::getDescripcion() + " + hamburguesa";
+const std::string CarneDecorator::name = "hamburguesa";
+
+std::string CarneDecorator::getName() {
+    return CarneDecorator::name;
 }
 
-float CarneDecorator::getValor() {
-    return AditionalDecorator::getValor() + 1.0;
+const float CarneDecorator::value = 1.0;
+
+float CarneDecorator::getValorAgregado() {
+    return CarneDecorator::value;
 }

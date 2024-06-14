@@ -18,9 +18,9 @@ AditionalDecorator::AditionalDecorator(Combo &decorado)
 
 
 std::string AditionalDecorator::getDescripcion(){
-    return combo.getDescripcion();
+    return combo.getDescripcion() + " + " + getName();
 }
 
 float AditionalDecorator::getValor(){
-    return combo.getValor();
+    return combo.getValor() + getValorAgregado();
 }

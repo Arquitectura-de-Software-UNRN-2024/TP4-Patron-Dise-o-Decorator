@@ -17,6 +17,9 @@ class TomateDecorator : public AditionalDecorator {
 public:
     TomateDecorator(Combo &decorado);
 
-    virtual std::string getDescripcion() override;
-    virtual float getValor() override;
+    virtual std::string getName() override;
+    virtual float getValorAgregado() override;
+
+    const static std::string name;
+    const static float value;
 };

@@ -16,10 +16,14 @@ TomateDecorator::TomateDecorator(Combo &decorado)
     : AditionalDecorator(decorado) {
 }
 
-std::string TomateDecorator::getDescripcion() {
-    return AditionalDecorator::getDescripcion() + " + tomate";
+const std::string TomateDecorator::name = "tomate";
+
+std::string TomateDecorator::getName() {
+    return TomateDecorator::name;
 }
 
-float TomateDecorator::getValor() {
-    return AditionalDecorator::getValor() + 0.50;
+const float TomateDecorator::value = 0.5;
+
+float TomateDecorator::getValorAgregado() {
+    return TomateDecorator::value;
 }

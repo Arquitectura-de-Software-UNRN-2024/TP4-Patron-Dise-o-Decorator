@@ -17,6 +17,9 @@ class CarneDecorator : public AditionalDecorator {
 public:
     CarneDecorator(Combo &decorado);
 
-    virtual std::string getDescripcion() override;
-    virtual float getValor() override;
+    virtual std::string getName() override;
+    virtual float getValorAgregado() override;
+
+    const static std::string name;
+    const static float value;
 };

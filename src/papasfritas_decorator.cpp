@@ -16,10 +16,14 @@ PapasFritasDecorator::PapasFritasDecorator(Combo &decorado)
     : AditionalDecorator(decorado) {
 }
 
-std::string PapasFritasDecorator::getDescripcion() {
-    return AditionalDecorator::getDescripcion() + " + papas fritas";
+const std::string PapasFritasDecorator::name = "papas fritas";
+
+std::string PapasFritasDecorator::getName() {
+    return PapasFritasDecorator::name;
 }
 
-float PapasFritasDecorator::getValor() {
-    return AditionalDecorator::getValor() + 1.20;
+const float PapasFritasDecorator::value = 1.2;
+
+float PapasFritasDecorator::getValorAgregado() {
+    return PapasFritasDecorator::value;
 }
